@@ -3,7 +3,7 @@
 # asdf-lazygit [![Build](https://github.com/nklmilojevic/asdf-lazygit/actions/workflows/build.yml/badge.svg)](https://github.com/nklmilojevic/asdf-lazygit/actions/workflows/build.yml) [![Lint](https://github.com/nklmilojevic/asdf-lazygit/actions/workflows/lint.yml/badge.svg)](https://github.com/nklmilojevic/asdf-lazygit/actions/workflows/lint.yml)
 
 
-[lazygit](https://github.com/junegunn/lazygit) plugin for the [asdf version manager](https://asdf-vm.com).
+[lazygit](https://github.com/jesseduffield/lazygit) plugin for the [asdf version manager](https://asdf-vm.com).
 
 </div>
 
@@ -18,7 +18,6 @@
 # Dependencies
 
 - `bash`, `curl`, `tar`: generic POSIX utilities.
-- `SOME_ENV_VAR`: set this environment variable in your shell config to load the correct version of tool x.
 
 # Install
 
