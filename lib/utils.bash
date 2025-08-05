@@ -36,6 +36,23 @@ get_platform() {
   local platform
 
   case "$(uname | tr '[:upper:]' '[:lower:]')" in
+  darwin) platform="darwin" ;;
+  freebsd) platform="freebsd" ;;
+  linux) platform="linux" ;;
+  windows) platform="windows" ;;
+  *)
+    fail "Platform '$(uname)' not supported!"
+    ;;
+  esac
+
+  echo -n $platform
+}
+
+get_platform_old() {
+  # The lazygit asset names used to use capitalized platform names (version 0.53.0 and earlier).
+  local platform
+
+  case "$(uname | tr '[:upper:]' '[:lower:]')" in
   darwin) platform="Darwin" ;;
   freebsd) platform="freebsd" ;;
   linux) platform="Linux" ;;
@@ -85,9 +102,12 @@ download_release() {
   filename="$2"
 
   url="$GH_REPO/releases/download/v${version}/lazygit_${version}_$(get_platform)_$(get_arch).$(get_extension)"
+  url_old="$GH_REPO/releases/download/v${version}/lazygit_${version}_$(get_platform_old)_$(get_arch).$(get_extension)"
 
   echo "* Downloading $TOOL_NAME release $version..."
-  curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
+  curl "${curl_opts[@]}" -o "$filename" -C - "$url" ||
+    curl "${curl_opts[@]}" -o "$filename" -C - "$url_old" ||
+    fail "Could not download $url or $url_old"
 }
 
 install_version() {
